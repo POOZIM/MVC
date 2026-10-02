@@ -1,12 +1,26 @@
+<%@page import="com.hexagon.mvc.model.ColorManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 
 <%
 String color = request.getParameter("color");
-if (color == null){
+if (color == null) {
 	color = "";
 }
-String msg = null;
+%>
+
+<%!ColorManager colorManager = new ColorManager();%>
+
+<%
+String msg = colorManager.getAdvice(color);
+%>
+
+
+<%
+/*if (color == null){
+	color = "";
+}
+ String msg = null;
 out.print("유저가 전송한 색상은 " + color);
 
 switch (color) {
@@ -24,7 +38,7 @@ switch (color) {
 		break;
 	default :
 		msg = "지원하지않는 아이돌입니다.";
-}
+*/
 %>
 <!DOCTYPE html>
 <html>
@@ -67,10 +81,11 @@ $(function(){
 			<div class="form-group">
 				<select class="form-control" name="color">
 					<option>select color</option>
-					<option value="red" <%if(color.equals("red")){%>selected<%}%>>red</option>
-					<option value="blue" <%if(color.equals("blue")){%>selected<%}%>>blue</option>
-					<option value="green" <%if(color.equals("green")){%>selected<%}%>>green</option>
-					<option value="yellow" <%if(color.equals("yellow")){%>selected<%}%>>yellow</option>
+					<option value="red" <%if (color.equals("red")) {%> selected <%}%>>red</option>
+					<option value="blue" <%if (color.equals("blue")) {%> selected <%}%>>blue</option>
+					<option value="green" <%if (color.equals("green")) {%> selected <%}%>>green</option>
+					<option value="yellow" <%if (color.equals("yellow")) {%> selected
+						<%}%>>yellow</option>
 				</select>
 			</div>
 			<button class="btn btn-info" id="bt">결과 보기</button>
