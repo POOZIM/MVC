@@ -1,19 +1,5 @@
-<%@page import="com.hexagon.mvc.model.ColorManager"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-
-<%
-String color = request.getParameter("color");
-if (color == null) {
-	color = "";
-}
-%>
-
-<%!ColorManager colorManager = new ColorManager();%>
-
-<%
-String msg = colorManager.getAdvice(color);
-%>
 
 
 <%
@@ -60,7 +46,7 @@ switch (color) {
 
 function getResult() {
 	$("#form1").attr({
-		action:"/color/main.jsp"
+		action:"/color",
 		method:"POST"
 	});
 	
@@ -72,7 +58,6 @@ $(function(){
 		});
 	});
 	
-)
 </script>
 </head>
 <body>
@@ -81,18 +66,17 @@ $(function(){
 			<div class="form-group">
 				<select class="form-control" name="color">
 					<option>select color</option>
-					<option value="red" <%if (color.equals("red")) {%> selected <%}%>>red</option>
-					<option value="blue" <%if (color.equals("blue")) {%> selected <%}%>>blue</option>
-					<option value="green" <%if (color.equals("green")) {%> selected <%}%>>green</option>
-					<option value="yellow" <%if (color.equals("yellow")) {%> selected
-						<%}%>>yellow</option>
+					<option value="red">red</option>
+					<option value="blue">blue</option>
+					<option value="green">green</option>
+					<option value="yellow">yellow</option>
 				</select>
 			</div>
 			<button class="btn btn-info" id="bt">결과 보기</button>
 		</form>
 		<h3>
 			선택 결과: <br>
-			<%=msg%>
+			<%=request.getAttribute("msg")%>
 		</h3>
 	</div>
 </body>
